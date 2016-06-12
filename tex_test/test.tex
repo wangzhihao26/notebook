@@ -1,9 +1,23 @@
 \documentclass[UTF8]{ctexart}
+\usepackage{listings}
 \title{你好，world!}
 \author{王智浩}
 \date{\today}
 \begin{document}
-\newpage
+  \lstset{numbers=left,
+  numberstyle= \tiny,keywordstyle= \color{ blue!70},commentstyle=\color{red!50!green!50!blue!50},
+  frame=shadowbox, rulesepcolor= \color{ red!20!green!20!blue!20},
+  escapeinside=``}
 \maketitle
-你好，world!
+\newpage
+\begin{lstlisting}[language=C]
+int main(int argc, char ** argv)
+{
+  /* print a string "Hello world!"
+  printf("`我爱中文`! \n");
+
+  return 0;
+}
+\end{lstlisting}
+你好，woeld！
 \end{document}

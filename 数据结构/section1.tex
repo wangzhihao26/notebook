@@ -1,0 +1,70 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{listings}
+\title{数据结构笔记1}
+\author{王智浩}
+\date{\today}
+\begin{document}
+  \lstset{numbers=left,
+  numberstyle= \tiny,keywordstyle= \color{ blue!70},commentstyle=\color{red!50!green!50!blue!50},
+  frame=shadowbox, rulesepcolor= \color{ red!20!green!20!blue!20},
+  escapeinside=``}
+\maketitle
+
+\newpage
+\section {基本概念}
+魔方程序
+\begin{lstlisting}[language=C]
+  #include<stdio.h>
+  #include<stdlib.h>
+  #define MAX_SIZE 15
+
+  void main(void)
+  {
+  	static int square[MAX_SIZE][MAX_SIZE];
+  	int i, j, row, column;
+  	int count;
+  	int size;
+
+  	printf("Enter the size of the square:");
+  	scanf_s("%d", &size);
+  	if (size <1 || size>MAX_SIZE + 1)
+  	{
+  		fprintf(stderr, "REEOR!Size is out of range\n");
+  		exit(1);
+  	}
+  	if (!(size % 2))
+  	{
+  		fprintf(stderr, "REEOR!Size is even\n ");
+  		exit(1);
+  	}
+  	for (i = 0; i < size; i++)
+  		for (j = 0; j < size; j++)
+  			square[i][j] = 0;
+  	square[0][(size - 1) / 2] = 1;
+  	i = 0;
+  	j = (size - 1) / 2;
+  	for (count = 2; count <= size*size; count++)
+  	{
+  		row = (i - 1 < 0) ? (size - 1) : (i - 1);
+  		column = (j - 1 < 0) ? (size - 1) : (j - 1);
+  		if (square[row][column])
+  			i = (++i) % size;
+  		else
+  		{
+  			i = row;
+  			j = (j - 1 < 0) ? (size - 1) : --j;
+  		}
+  		square[i][j] = count;
+  	}
+  	printf("Magic square of size %d:\n\n", size);
+  	for (i = 0; i < size; i++) {
+  		for (j = 0; j < size; j++)
+  			printf("%5d", square[i][j]);
+  		printf("\n");
+  	}
+  	getchar();
+  	printf("\n\n");
+  }
+\end{lstlisting}
+
+\end{document}
